@@ -9,7 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import tekmob.anonim2.tools.LazyAdapter;
-import tekmob.anonim2.tools.XMLParser;
+import tekmob.anonim2.tools.XMLParserasas;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
