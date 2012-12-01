@@ -11,7 +11,7 @@
 	    android:icon="@drawable/icon" 
 	    android:label="@string/app_name"
 	    android:theme="@android:style/Theme.Light.NoTitleBar" >
-		<activity android:name="MenuMasalah" android:label="@string/app_name">
+		<activity android:name="TabUtama" android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
@@ -19,6 +19,8 @@
 		</activity>
 		
 		<activity android:name="MenuDetailMasalah" />
+		<activity android:name="MenuMasalah" />
+		<activity android:name="MenuLaporkan" />
 		
 	</application>
 </manifest>
