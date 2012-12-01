@@ -3,13 +3,7 @@ package tekmob.anonim2;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Logger;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import tekmob.anonim2.tools.LazyAdapter;
-import tekmob.anonim2.tools.XMLParserasas;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -89,8 +83,7 @@ public class MenuMasalah extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-							
-
+				
 			}
 		});		
 	}	
