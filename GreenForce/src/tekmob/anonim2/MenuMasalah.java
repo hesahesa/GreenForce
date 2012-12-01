@@ -1,10 +1,15 @@
 package tekmob.anonim2;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import tekmob.anonim2.tools.LazyAdapter;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +20,7 @@ import com.google.gson.Gson;
 
 public class MenuMasalah extends Activity {
 	// All static variables
-	public static final String ALL_MASALAH_URL = "http://api.androidhive.info/music/music.xml";
+	public static final String ALL_MASALAH_URL = "http://gamis61.org/greenforce/pull-daftar.php";
 	/*// XML node keys
 	public static final String KEY_SONG = "song"; // parent node
 	public static final String KEY_ID = "id";
@@ -41,24 +46,25 @@ public class MenuMasalah extends Activity {
 		 * seharusnya nggak jauh beda
 		 */
 		Gson gson = new Gson();
-		
-		//  driver
-		ModelAllMasalah driverMasalah = new ModelAllMasalah();
-		List<ModelMasalahMini> driverList = new ArrayList<ModelMasalahMini>();
-		for(int a=0;a<=1;a++) {
-			ModelMasalahMini mm = new ModelMasalahMini();
-			mm.setId(""+a);
-			mm.setNama("Masalah ke-"+a);
-			mm.setLokasi("Lokasi masalah ke-"+a);
-			mm.setPelapor("Pelapor dummy"+a);
-			driverList.add(mm);			
+		ModelAllMasalah tesGson = null;
+		try {
+			String res = "";
+	        URL url = new URL(ALL_MASALAH_URL);
+	        URLConnection urlConnection = url.openConnection();
+	        urlConnection.setReadTimeout(10000);
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+	        String line;
+
+	        while ((line = reader.readLine()) != null) {
+	            res += line;
+	        }
+	        reader.close();
+	        
+	        tesGson = gson.fromJson(res, ModelAllMasalah.class);
+
+		} catch (Exception ex) {
+			Log.i("coks", ex.toString());
 		}
-		driverMasalah.setAllMasalah(driverList);
-		String buff = gson.toJson(driverMasalah);
-		Log.e("tes json", buff);
-		// end driver
-		
-		ModelAllMasalah tesGson = gson.fromJson(buff, ModelAllMasalah.class);
 		
 		for(ModelMasalahMini mm : tesGson.getAllMasalah()) {
 			HashMap<String, String> map = new HashMap<String, String>();
@@ -83,7 +89,9 @@ public class MenuMasalah extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				
+				Intent itc = new Intent().setClass(view.getContext(), MenuDetailMasalah.class);
+		    	itc.putExtra("id_masalah", list.getAdapter().getItem(position).toString());
+				startActivity(itc);
 			}
 		});		
 	}	

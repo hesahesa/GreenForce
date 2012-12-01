@@ -31,7 +31,7 @@ public class LazyAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        return position;
+        return data.get(position).get("id");
     }
 
     public long getItemId(int position) {

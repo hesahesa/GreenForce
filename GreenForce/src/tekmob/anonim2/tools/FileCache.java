@@ -23,8 +23,7 @@ public class FileCache {
         //Another possible solution (thanks to grantland)
         //String filename = URLEncoder.encode(url);
         File f = new File(cacheDir, filename);
-        return f;
-        
+        return f;    
     }
     
     public void clear(){
