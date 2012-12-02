@@ -1,10 +1,10 @@
 package tekmob.anonim2;
 
 public class ModelMasalahMini {
-	protected String id;
-	protected String nama;
-	protected String lokasi;
-	protected String pelapor;
+	private String id;
+	private String nama;
+	private String lokasi;
+	private String pelapor;
 
 	/**
 	 * @return the id
