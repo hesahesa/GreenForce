@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.google.gson.Gson;
 
 public class MenuMasalah extends Activity {
@@ -62,9 +64,7 @@ public class MenuMasalah extends Activity {
 	        
 	        tesGson = gson.fromJson(res, ModelAllMasalah.class);
 
-		} catch (Exception ex) {
-			Log.i("coks", ex.toString());
-		}
+		
 		
 		for(ModelMasalahMini mm : tesGson.getAllMasalah()) {
 			HashMap<String, String> map = new HashMap<String, String>();
@@ -80,8 +80,7 @@ public class MenuMasalah extends Activity {
 		
 		// Getting adapter by passing xml data ArrayList
         adapter=new LazyAdapter(this, listMasalah);        
-        list.setAdapter(adapter);
-        
+        list.setAdapter(adapter);        
 
         // Click event for single list row
         list.setOnItemClickListener(new OnItemClickListener() {
@@ -93,6 +92,10 @@ public class MenuMasalah extends Activity {
 		    	itc.putExtra("id_masalah", list.getAdapter().getItem(position).toString());
 				startActivity(itc);
 			}
-		});		
+		});
+		} catch (Exception ex) {
+			Log.i("coks", ex.toString());
+			Toast.makeText(getApplicationContext(), "Gagal Mengambil Informasi Masalah, Silakan Mencoba Lagi", Toast.LENGTH_LONG).show();
+		}
 	}	
 }

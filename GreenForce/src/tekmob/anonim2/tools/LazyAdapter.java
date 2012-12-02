@@ -61,7 +61,7 @@ public class LazyAdapter extends BaseAdapter {
         // Setting all values in listview
         namamasalah.setText(entryMasalah.get("nama"));
         lokasidanpelapor.setText("Lokasi: "+entryMasalah.get("lokasi")+"\nPelapor: "+entryMasalah.get("pelapor"));
-        //imageLoader.DisplayImage(entryMasalah.get(MenuMasalah.KEY_THUMB_URL), thumb_image);
+        imageLoader.DisplayImage("http://gamis61.org/greenforce/show-image.php?id="+entryMasalah.get("id")+"&isLarge=0", thumb_image);
         return vi;
     }
 }
