@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <!-- field for photo -->
+
+        <ImageView
+            android:id="@+id/greenForceImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/no_image_icon" />
+
+        <!-- field for title -->
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+        <!-- field for location -->
+
+        <TextView
+            android:id="@+id/lokasi"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textStyle="italic" />
+        <!-- field for G-map -->
+
+        <com.google.android.maps.MapView
+            android:id="@+id/petaposisi2"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:apiKey="0XLeyxuyC6biMgkkFGe88VXEZsPeK8-PRFeJDew" />
+
+        <!-- field for detail masalah -->
+
+        <TextView
+            android:id="@+id/detailMasalah_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Detil Masalah"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/detailMasalah_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="20px"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black" />
+        <!-- field for pelapor -->
+
+        <TextView
+            android:id="@+id/pelapor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="20px"
+            android:text="Pelapor: -"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textStyle="italic" />
+        <!-- field for vote -->
+        <!-- field for share -->
+
+        <Button
+            android:id="@+id/sharebutton"
+            android:layout_width="wrap_content"
+            android:text="share"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp" />
+    </LinearLayout>
+
+</ScrollView>

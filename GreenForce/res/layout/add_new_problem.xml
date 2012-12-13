@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+			<!-- field for photo -->
+			<ImageView
+            	android:id="@+id/greenForceImage" 
+            	android:layout_width="wrap_content" 
+            	android:src="@drawable/no_image_icon" 
+            	android:layout_height="wrap_content"
+            	android:layout_gravity="center_horizontal"/>
+			
+			<!-- button for take photo options -->
+			<TableLayout
+	            android:id="@+id/tb_6"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:paddingTop="10sp" >
+	            
+	               <TableRow
+	                android:id="@+id/tableRow1"
+	                android:layout_width="fill_parent"
+	                android:layout_height="fill_parent"
+	                android:gravity="center" >
+	
+	                <Button
+	                    android:id="@+id/browsePhoto"
+	                    android:layout_width="100sp"
+	                    android:layout_height="wrap_content"
+	                    android:text="Browse" />
+	
+	                <Button
+	                    android:id="@+id/takePhoto"
+	                    android:layout_width="100sp"
+	                    android:layout_height="wrap_content"
+	                    android:text="Take photo" />
+	            </TableRow> 
+	        </TableLayout>
+			
+			
+			<!-- field for nama masalah -->
+				<TextView
+                    android:id="@+id/masalah_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black"
+                    android:text="Nama Masalah"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/masalahField"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+                </EditText>
+                
+            <!-- field for lokasi -->
+				<TextView
+                    android:id="@+id/lokasi_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black"
+                    android:text="Lokasi"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+				
+				 <RelativeLayout
+			        android:orientation="horizontal"
+			        android:layout_width="fill_parent"
+			        android:layout_height="fill_parent"
+			        android:padding="0dp">
+			        
+			        <EditText
+	                    android:id="@+id/lokasiField"
+	                    android:layout_width="fill_parent"
+	                    android:layout_height="wrap_content"
+	                    android:layout_toLeftOf="@+id/gps"
+	                    android:gravity="left" />
+			        
+			        <ImageButton
+			            android:id="@+id/gpsButton"
+			            android:src="@drawable/gps_icon"
+			            android:layout_centerVertical="true"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:layout_alignParentRight="true"
+			            android:layout_alignParentBottom="true"/>  
+			    </RelativeLayout>
+			    
+                <TextView
+                    android:id="@+id/posisi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textColor="@color/black"
+                    android:text="posisi: -"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                
+                <com.google.android.maps.MapView
+                    android:id="@+id/petaposisi"
+	                android:layout_width="wrap_content"
+	                android:layout_height="180dp"
+	                android:apiKey="0XLeyxuyC6biMgkkFGe88VXEZsPeK8-PRFeJDew" />
+        
+            <!-- field for detail masalah -->
+                <TextView
+                    android:id="@+id/detilMasalah_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black"
+                    android:text="Detail Masalah"
+                    android:layout_marginTop="50px"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/detilMasalahField"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:width="50px"
+                    android:gravity="left" />
+        
+        <Button
+            android:id="@+id/laporkanButton"
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Laporkan" />
+    </LinearLayout>
+
+</ScrollView>
