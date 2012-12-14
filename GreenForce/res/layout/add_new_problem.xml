@@ -80,7 +80,7 @@
 	                    android:id="@+id/lokasiField"
 	                    android:layout_width="fill_parent"
 	                    android:layout_height="wrap_content"
-	                    android:layout_toLeftOf="@+id/gps"
+	                    android:layout_toLeftOf="@+id/gpsButton"
 	                    android:gravity="left" />
 			        
 			        <ImageButton

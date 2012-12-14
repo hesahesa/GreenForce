@@ -9,7 +9,6 @@
         android:orientation="vertical" >
 
         <!-- field for photo -->
-
         <ImageView
             android:id="@+id/greenForceImage"
             android:layout_width="200dp"
@@ -18,7 +17,6 @@
             android:src="@drawable/no_image_icon" />
 
         <!-- field for title -->
-
         <TextView
             android:id="@+id/title"
             android:layout_width="fill_parent"
@@ -28,8 +26,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textStyle="bold" />
+            
         <!-- field for location -->
-
         <TextView
             android:id="@+id/lokasi"
             android:layout_width="fill_parent"
@@ -39,8 +37,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textStyle="italic" />
+            
         <!-- field for G-map -->
-
         <com.google.android.maps.MapView
             android:id="@+id/petaposisi2"
             android:layout_width="wrap_content"
@@ -48,7 +46,6 @@
             android:apiKey="0XLeyxuyC6biMgkkFGe88VXEZsPeK8-PRFeJDew" />
 
         <!-- field for detail masalah -->
-
         <TextView
             android:id="@+id/detailMasalah_title"
             android:layout_width="wrap_content"
@@ -68,24 +65,56 @@
             android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black" />
+            
         <!-- field for pelapor -->
-
         <TextView
             android:id="@+id/pelapor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:paddingLeft="20px"
+            android:layout_marginTop="50px"
             android:text="Pelapor: -"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:textStyle="italic" />
+            android:textColor="@color/darkslategray"
+            android:textStyle="italic"/>
+        
         <!-- field for vote -->
+        <RelativeLayout
+			        android:orientation="horizontal"
+			        android:layout_width="fill_parent"
+			        android:layout_height="fill_parent"
+			        android:layout_marginTop="50px">
+				<ImageButton
+			            android:id="@+id/voteUpButton"
+			            android:src="@drawable/vote_up"
+			            android:layout_centerVertical="true"
+			            android:layout_width="50px"
+			            android:layout_height="50px"
+			            android:layout_toLeftOf="@+id/voteDownButton"/>
+				<ImageButton
+			            android:id="@+id/voteDownButton"
+			            android:src="@drawable/vote_down"
+			            android:layout_width="50px"
+			            android:layout_height="50px"
+			            android:layout_alignParentRight="true"
+			            android:layout_marginLeft="20px"/>
+            </RelativeLayout>
+            
+        <!-- field for sum of vote up -->
+        <TextView
+            android:id="@+id/vote_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Jumlah voteUp: -"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/steelblue"
+            android:textStyle="italic" />
+            
         <!-- field for share -->
-
         <Button
             android:id="@+id/sharebutton"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:text="share"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
