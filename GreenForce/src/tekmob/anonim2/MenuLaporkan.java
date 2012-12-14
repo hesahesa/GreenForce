@@ -33,6 +33,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -69,6 +70,8 @@ public class MenuLaporkan extends MapActivity {
 	String lng = "";
 	Uri imagePosition;
 	String imageBase64;
+	private SharedPreferences mPrefs;
+	String namauser;
 	static private MapView mapView;
 	static private MyLocationOverlay myLocOverlay;
 	static MapController mc;
@@ -78,6 +81,7 @@ public class MenuLaporkan extends MapActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_new_problem);
 
+		namauser = mPrefs.getString("nama_user", "dummy");
 		mapView = (MapView) findViewById(R.id.petaposisi);
 		mc = mapView.getController();
 
@@ -352,7 +356,7 @@ public class MenuLaporkan extends MapActivity {
 				reqEntity.addPart("nama", new StringBody(namaMasalah));
 				reqEntity.addPart("detail", new StringBody(detilMasalah));
 				reqEntity.addPart("lokasi", new StringBody(lokasi));
-				reqEntity.addPart("pelapor", new StringBody("dummy"));
+				reqEntity.addPart("pelapor", new StringBody(namauser));
 				reqEntity.addPart("lat", new StringBody(lat));
 				reqEntity.addPart("lng", new StringBody(lng));
 				postRequest.setEntity(reqEntity);
