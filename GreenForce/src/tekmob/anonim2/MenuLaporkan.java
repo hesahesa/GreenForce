@@ -81,6 +81,7 @@ public class MenuLaporkan extends MapActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_new_problem);
 
+		mPrefs = getSharedPreferences("userdata", MODE_PRIVATE);
 		namauser = mPrefs.getString("nama_user", "dummy");
 		mapView = (MapView) findViewById(R.id.petaposisi);
 		mc = mapView.getController();

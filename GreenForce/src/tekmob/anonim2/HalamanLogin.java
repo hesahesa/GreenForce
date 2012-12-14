@@ -39,7 +39,7 @@ public class HalamanLogin extends Activity {
         /*
          * Get existing access_token if any
          */
-        mPrefs = getPreferences(MODE_PRIVATE);
+        mPrefs = getSharedPreferences("userdata", MODE_PRIVATE);
         String access_token = mPrefs.getString("access_token", null);
         long expires = mPrefs.getLong("access_expires", 0);
         if(access_token != null) {
