@@ -35,6 +35,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Bitmap.CompressFormat;
@@ -63,7 +64,7 @@ public class MenuDetailMasalah extends MapActivity {
 	Button btn;
 	String id_masalah;
 	String vote_type;
-	String username_pelapor;
+	String nama_voter;
 	
 
 	@Override
@@ -117,7 +118,7 @@ public class MenuDetailMasalah extends MapActivity {
 	 * @param void
 	 */
 	public void alertSukses() {
-		new AlertDialog.Builder(this).setTitle("Message")
+		new AlertDialog.Builder(this).setTitle("Sukses")
 		.setMessage("Vote berhasil ditambahkan")
 		.setNeutralButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dlg, int sumthin) {
@@ -134,7 +135,7 @@ public class MenuDetailMasalah extends MapActivity {
 	 * @param void
 	 */
 	public void alertGagal() {
-		new AlertDialog.Builder(this).setTitle("Error")
+		new AlertDialog.Builder(this).setTitle("Gagal")
 		.setMessage("Vote gagal ditambahkan")
 		.setNeutralButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dlg, int sumthin) {
@@ -215,7 +216,8 @@ public class MenuDetailMasalah extends MapActivity {
 						Toast.LENGTH_LONG).show();
 				return;
 			}
-			username_pelapor = tesGson.getPelapor();
+			SharedPreferences mPrefs = getSharedPreferences("userdata", MODE_PRIVATE);
+			nama_voter = mPrefs.getString("nama_user", "dummy");
 			
 			namamasalah.setText(tesGson.getNama());
 			lokasi.setText(tesGson.getLokasi());
@@ -271,7 +273,7 @@ public class MenuDetailMasalah extends MapActivity {
 
 		protected void onPreExecute() {
 			dialog = ProgressDialog.show(MenuDetailMasalah.this, "",
-					"Sedang Meng-upload Data...", true, false);
+					"Sedang Mengirim Vote...", true, false);
 		}
 
 		@Override
@@ -279,7 +281,7 @@ public class MenuDetailMasalah extends MapActivity {
 			// upload
 			Log.e("upload", "masuk upload");
 			Log.e("id", id_masalah);
-			Log.e("pelapor", username_pelapor);
+			Log.e("pelapor", nama_voter);
 			Log.e("voteType", vote_type);
 			StringBuilder s = new StringBuilder();
 			try {
@@ -293,7 +295,7 @@ public class MenuDetailMasalah extends MapActivity {
 						HttpMultipartMode.BROWSER_COMPATIBLE);
 				reqEntity.addPart("id", new StringBody(id_masalah));
 				reqEntity.addPart("voteType", new StringBody(vote_type));
-				reqEntity.addPart("pelapor", new StringBody(username_pelapor));
+				reqEntity.addPart("pelapor", new StringBody(nama_voter));
 				postRequest.setEntity(reqEntity);
 				HttpResponse response = httpClient.execute(postRequest);
 				BufferedReader reader = new BufferedReader(
@@ -314,7 +316,7 @@ public class MenuDetailMasalah extends MapActivity {
 		protected void onPostExecute(String hasil) {
 			Log.e("hasil return", hasil);
 			dialog.cancel();
-			if(hasil.equals("1")) {
+			if(hasil==null || hasil.equals("1")) {
 				alertGagal();
 				return;
 			}

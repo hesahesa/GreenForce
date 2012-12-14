@@ -250,8 +250,8 @@ public class MenuLaporkan extends MapActivity {
 	 * @param void
 	 */
 	public void alertSukses() {
-		new AlertDialog.Builder(this).setTitle("Message")
-		.setMessage("Objek berhasil ditambahkan")
+		new AlertDialog.Builder(this).setTitle("Sukses")
+		.setMessage("Laporan Masalah Berhasil Ditambahkan")
 		.setNeutralButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dlg, int sumthin) {
 
@@ -267,8 +267,8 @@ public class MenuLaporkan extends MapActivity {
 	 * @param void
 	 */
 	public void alertGagal() {
-		new AlertDialog.Builder(this).setTitle("Error")
-		.setMessage("Nama objek dan deskripsi tidak boleh kosong")
+		new AlertDialog.Builder(this).setTitle("Gagal")
+		.setMessage("Laaporan Masalah Gagal Ditambahkan")
 		.setNeutralButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dlg, int sumthin) {
 
