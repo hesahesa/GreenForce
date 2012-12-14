@@ -57,41 +57,44 @@ public final class R {
         public static final int detailMasalah_title=0x7f070013;
         public static final int detilMasalahField=0x7f07000e;
         public static final int detilMasalah_title=0x7f07000d;
-        public static final int duration=0x7f07001b;
+        public static final int duration=0x7f07001d;
         public static final int gps=0x7f070009;
         public static final int gpsButton=0x7f07000a;
         public static final int greenForceImage=0x7f070000;
         public static final int laporkanButton=0x7f07000f;
-        public static final int list=0x7f07001c;
-        public static final int list_image=0x7f070018;
+        public static final int list=0x7f07001e;
+        public static final int list_image=0x7f07001a;
+        public static final int loginfb=0x7f070018;
         public static final int lokasi=0x7f070011;
         public static final int lokasiField=0x7f070008;
         public static final int lokasi_title=0x7f070007;
-        public static final int lokasidanpelapor=0x7f07001a;
+        public static final int lokasidanpelapor=0x7f07001c;
         public static final int masalahField=0x7f070006;
         public static final int masalah_title=0x7f070005;
-        public static final int namamasalah=0x7f070019;
+        public static final int namamasalah=0x7f07001b;
         public static final int pelapor=0x7f070015;
         public static final int petaposisi=0x7f07000c;
         public static final int petaposisi2=0x7f070012;
         public static final int posisi=0x7f07000b;
+        public static final int relativeLayout1=0x7f070017;
         public static final int sharebutton=0x7f070016;
         public static final int tableRow1=0x7f070002;
-        public static final int tabsLayout=0x7f07001d;
-        public static final int tabsText=0x7f07001e;
+        public static final int tabsLayout=0x7f07001f;
+        public static final int tabsText=0x7f070020;
         public static final int takePhoto=0x7f070004;
         public static final int tb_6=0x7f070001;
-        public static final int thumbnail=0x7f070017;
+        public static final int thumbnail=0x7f070019;
         public static final int title=0x7f070010;
     }
     public static final class layout {
         public static final int add_new_problem=0x7f030000;
         public static final int custom_tab=0x7f030001;
         public static final int detail_problem=0x7f030002;
-        public static final int list_row=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int tab_menu=0x7f030005;
-        public static final int tabs_bg=0x7f030006;
+        public static final int halamanlogin=0x7f030003;
+        public static final int list_row=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int tab_menu=0x7f030006;
+        public static final int tabs_bg=0x7f030007;
     }
     public static final class string {
         public static final int app_name=0x7f050001;

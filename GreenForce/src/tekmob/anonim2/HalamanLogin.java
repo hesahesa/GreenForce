@@ -4,21 +4,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
+
 import com.facebook.android.*;
 import com.facebook.android.Facebook.*;
 import com.facebook.android.AsyncFacebookRunner;
 
-public class FacebookLogin extends Activity {
+public class HalamanLogin extends Activity {
 
     Facebook facebook = new Facebook("131694736985416");
     AsyncFacebookRunner mAsyncRunner = new AsyncFacebookRunner(facebook);
+    Button buttonLogin;
 
     private SharedPreferences mPrefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.halamanlogin);
+        buttonLogin = (Button)findViewById(R.id.loginfb);
         /*
          * Get existing access_token if any
          */
