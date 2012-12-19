@@ -41,11 +41,11 @@ public final class R {
         public static final int layout_gradient=0x7f02000f;
         public static final int linkedin=0x7f020010;
         public static final int list_selector=0x7f020011;
-        public static final int myspace=0x7f020012;
-        public static final int no_image_icon=0x7f020013;
-        public static final int play=0x7f020014;
-        public static final int reddot=0x7f020015;
-        public static final int rihanna=0x7f020016;
+        public static final int loginscreen=0x7f020012;
+        public static final int myspace=0x7f020013;
+        public static final int no_image_icon=0x7f020014;
+        public static final int play=0x7f020015;
+        public static final int reddot=0x7f020016;
         public static final int tab_bg_selected=0x7f020017;
         public static final int tab_bg_selector=0x7f020018;
         public static final int tab_bg_unselected=0x7f020019;
@@ -67,8 +67,8 @@ public final class R {
         public static final int laporkanButton=0x7f07000e;
         public static final int list=0x7f070021;
         public static final int list_image=0x7f07001d;
-        public static final int loginfb=0x7f07001a;
-        public static final int logoutfb=0x7f07001b;
+        public static final int loginfb=0x7f07001b;
+        public static final int logoutfb=0x7f07001a;
         public static final int lokasi=0x7f070010;
         public static final int lokasiField=0x7f070008;
         public static final int lokasi_title=0x7f070007;

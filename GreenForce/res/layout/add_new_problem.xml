@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:textColor="@color/black"
-                    android:text="posisi: -"
+                    android:text="Posisi belum ada"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
                 
                 <com.google.android.maps.MapView

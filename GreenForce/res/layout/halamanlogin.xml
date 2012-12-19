@@ -2,24 +2,26 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
-        <Button
-            android:id="@+id/loginfb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Login with Facebook" />
+        android:layout_height="fill_parent" 
+        android:background="@drawable/loginscreen" >
 
         <Button
             android:id="@+id/logoutfb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/loginfb"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:text="Logout" 
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/loginfb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/logoutfb"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:text="Login with Facebook" />
 
     </RelativeLayout>

@@ -69,7 +69,6 @@ public class MenuLaporkan extends MapActivity {
 	String lat = "";
 	String lng = "";
 	Uri imagePosition;
-	String imageBase64;
 	private SharedPreferences mPrefs;
 	String namauser;
 	static private MapView mapView;
@@ -102,8 +101,7 @@ public class MenuLaporkan extends MapActivity {
 				EditText detilMasalahField = (EditText) findViewById(R.id.detilMasalahField);
 				detilMasalah = detilMasalahField.getText().toString();
 
-				if (!namaMasalah.equals("") && !lokasi.equals("") && !detilMasalah.equals("")) {
-					///////////
+				if (bit!=null && !namaMasalah.equals("") && !lokasi.equals("") && !detilMasalah.equals("")) {
 					MenuLaporkan.AsynchUploader as = new MenuLaporkan.AsynchUploader();
 					as.execute();
 				} else
@@ -143,13 +141,9 @@ public class MenuLaporkan extends MapActivity {
 
 			@Override
 			public void onClick(View v) {
-				TextView posisiField = (TextView) findViewById(R.id.posisi);
-				LocationManager locManager=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
-				MyLocationListener locListener = new MyLocationListener();
-				locListener.setTextView(posisiField);
-				locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,500,100,locListener);
-				locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,500,100,locListener);
-				myLocOverlay = new MyLocationOverlay(v.getContext(), mapView);
+				final TextView posisiField = (TextView) findViewById(R.id.posisi);
+				posisiField.setText("Sedang mencari lokasi sekarang...");
+				myLocOverlay = new MyLocationMod(v.getContext(), mapView, posisiField);
 				myLocOverlay.enableMyLocation();
 				mapView.getOverlays().add(myLocOverlay);
 				myLocOverlay.runOnFirstFix(new Runnable() {
@@ -157,6 +151,12 @@ public class MenuLaporkan extends MapActivity {
 					public void run() {
 						lat = ""+myLocOverlay.getMyLocation().getLatitudeE6();
 						lng = ""+myLocOverlay.getMyLocation().getLongitudeE6();
+						MenuLaporkan.this.runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								posisiField.setText(lat+"~"+lng);
+							}
+						});
 						mc.setZoom(17);
 						mc.animateTo(myLocOverlay.getMyLocation());
 					}
@@ -175,8 +175,6 @@ public class MenuLaporkan extends MapActivity {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		String[] temp;
-
 		ImageView picture = (ImageView) findViewById(R.id.greenForceImage);
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
@@ -271,59 +269,39 @@ public class MenuLaporkan extends MapActivity {
 		.setMessage("Laaporan Masalah Gagal Ditambahkan")
 		.setNeutralButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dlg, int sumthin) {
-
+				
 			}
 		}).show();
-	}
-
-	static class MyLocationListener implements LocationListener{
-		private String lat;
-		private String lng;
-		private String position;
-		private TextView tx;
-
-		@Override
-		public void onLocationChanged(Location loc){
-			this.lat = String.valueOf(loc.getLatitude());
-			this.lng = String.valueOf(loc.getLongitude());
-			String position = loc.getLatitude()+"~"+loc.getLongitude();
-			tx.setText(position);
-
-		}
-		@Override
-		public void onProviderDisabled(String arg0){
-			Log.e("GPS","provider disabled"+arg0);
-		}
-		@Override
-		public void onProviderEnabled(String arg0){
-			Log.e("GPS","provider enabled"+arg0);
-		}
-		@Override
-		public void onStatusChanged(String arg0, int arg1, Bundle extras){
-			Log.e("GPS", "status changed to " + arg0 + " [" + arg1 + "]");
-		}
-
-		public String getLat(){
-			return this.lat;
-		}
-
-		public String getLng(){
-			return this.lng;
-		}
-		public String position(){
-			return this.position;
-		}
-
-		public void setTextView(TextView tx){
-			this.tx = tx;
-		}
-
 	}
 
 	@Override
 	protected boolean isRouteDisplayed() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	private class MyLocationMod extends MyLocationOverlay {
+
+		private TextView posisiField;
+		
+		public MyLocationMod(Context context, MapView mapView, TextView tx) {
+			super(context, mapView);
+			this.posisiField = tx;
+		}
+		
+		public void onLocationChanged(Location loc) {
+			super.onLocationChanged(loc);
+			lat = ""+this.getMyLocation().getLatitudeE6();
+			lng = ""+this.getMyLocation().getLongitudeE6();
+			MenuLaporkan.this.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					posisiField.setText(lat+"~"+lng);
+				}
+			});
+			mc.setZoom(17);
+			mc.animateTo(this.getMyLocation());
+		}
 	}
 	
 	private class AsynchUploader extends AsyncTask<Void, Void, String> {
@@ -383,6 +361,18 @@ public class MenuLaporkan extends MapActivity {
 				return;
 			}
 			alertSukses();
+			ImageView picture = (ImageView) findViewById(R.id.greenForceImage);
+			picture.setImageResource(R.drawable.no_image_icon);
+			EditText masalahField = (EditText) findViewById(R.id.masalahField);
+			masalahField.setText("");
+			EditText lokasiField = (EditText) findViewById(R.id.lokasiField);
+			lokasiField.setText("");
+			EditText detilMasalahField = (EditText) findViewById(R.id.detilMasalahField);
+			detilMasalahField.setText("");
+			bit = null;
+			namaMasalah = "";
+			lokasi = "";
+			detilMasalah = "";			
 		}
 		
 	}

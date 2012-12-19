@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.android.*;
 import com.facebook.android.AsyncFacebookRunner.RequestListener;
@@ -53,14 +55,44 @@ public class HalamanLogin extends Activity {
 
         	@Override
         	public void onClick(View v) {
-        		facebook.setAccessToken(null);
-        		facebook.setAccessExpires(0);
-        		SharedPreferences.Editor editor = mPrefs.edit();
-				editor.putString("access_token", null);
-				editor.putLong("access_expires", 0);
-				editor.putString("nama_user", null);
-				editor.commit();
-				finish();
+        		final ProgressDialog dialog = ProgressDialog.show(HalamanLogin.this, "", "Logging out...", true, false);
+        		mAsyncRunner.logout(HalamanLogin.this, new RequestListener() {
+					
+					@Override
+					public void onMalformedURLException(MalformedURLException e, Object state) {
+						dialog.cancel();
+						Toast.makeText(HalamanLogin.this, "Logout gagal, silakan coba beberapa saat lagi", Toast.LENGTH_SHORT);
+					}
+					
+					@Override
+					public void onIOException(IOException e, Object state) {
+						dialog.cancel();
+						Toast.makeText(HalamanLogin.this, "Logout gagal, silakan coba beberapa saat lagi", Toast.LENGTH_SHORT);
+					}
+					
+					@Override
+					public void onFileNotFoundException(FileNotFoundException e, Object state) {
+						dialog.cancel();
+						Toast.makeText(HalamanLogin.this, "Logout gagal, silakan coba beberapa saat lagi", Toast.LENGTH_SHORT);
+					}
+					
+					@Override
+					public void onFacebookError(FacebookError e, Object state) {
+						dialog.cancel();
+						Toast.makeText(HalamanLogin.this, "Logout gagal, silakan coba beberapa saat lagi", Toast.LENGTH_SHORT);
+					}
+					
+					@Override
+					public void onComplete(String response, Object state) {
+						SharedPreferences.Editor editor = mPrefs.edit();
+						editor.putString("access_token", null);
+						editor.putLong("access_expires", 0);
+						editor.putString("nama_user", null);
+						editor.commit();
+						dialog.cancel();
+						HalamanLogin.this.finish();
+					}
+				});
         	}
         });
 
@@ -111,6 +143,27 @@ public class HalamanLogin extends Activity {
 										SharedPreferences.Editor editor = mPrefs.edit();
 			        					editor.putString("nama_user", json.getString("name"));
 			        					editor.commit();
+			        					Log.d("result", ""+facebook.isSessionValid());
+			        			        HalamanLogin.this.runOnUiThread(new Runnable() {
+											
+											@Override
+											public void run() {
+												if(facebook.isSessionValid()) {
+					        			        	String namauser = mPrefs.getString("nama_user", null);
+					        			        	buttonLogin.setText(namauser+"'s GreenForce");
+					        			        	buttonLogin.setOnClickListener(new OnClickListener() {
+					        							
+					        							@Override
+					        							public void onClick(View v) {
+					        								Intent itc = new Intent().setClass(v.getContext(), TabUtama.class);
+					        				    			startActivity(itc);
+					        				    			finish();
+					        							}
+					        						});
+					        			        	buttonLogout.setVisibility(View.VISIBLE);
+					        			        }
+											}
+										});
 									} catch (FacebookError e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
@@ -153,21 +206,6 @@ public class HalamanLogin extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        facebook.authorizeCallback(requestCode, resultCode, data);
-        if(facebook.isSessionValid()) {
-        	String namauser = mPrefs.getString("nama_user", null);
-        	buttonLogin.setText(namauser+"'s GreenForce");
-        	buttonLogin.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					Intent itc = new Intent().setClass(v.getContext(), TabUtama.class);
-	    			startActivity(itc);
-	    			finish();
-				}
-			});
-        	buttonLogout.setVisibility(View.VISIBLE);
-        }
-        
+        facebook.authorizeCallback(requestCode, resultCode, data);        
     }
 }
