@@ -266,7 +266,7 @@ public class MenuLaporkan extends MapActivity {
 	 */
 	public void alertGagal() {
 		new AlertDialog.Builder(this).setTitle("Gagal")
-		.setMessage("Laaporan Masalah Gagal Ditambahkan")
+		.setMessage("Laporan Masalah Gagal Ditambahkan")
 		.setNeutralButton("OK", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dlg, int sumthin) {
 				

@@ -36,6 +36,18 @@ public class HalamanLogin extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.halamanlogin);
+        
+        /**hack
+        mPrefs = getSharedPreferences("userdata", MODE_PRIVATE);
+        SharedPreferences.Editor editor = mPrefs.edit();
+		editor.putString("nama_user", "Prahesa Kusuma Setia");
+		editor.commit();
+        Intent itc = new Intent().setClass(this, TabUtama.class);
+		startActivity(itc);
+		finish();
+		end hack**/
+        
+        
         buttonLogin = (Button)findViewById(R.id.loginfb);
         buttonLogout = (Button)findViewById(R.id.logoutfb);
         /*

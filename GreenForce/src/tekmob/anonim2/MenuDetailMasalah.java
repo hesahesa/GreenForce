@@ -287,7 +287,7 @@ public class MenuDetailMasalah extends MapActivity {
 			try {
 				final HttpParams hpar = new BasicHttpParams();
 				HttpConnectionParams.setConnectionTimeout(hpar, 30000);
-				HttpConnectionParams.setSoTimeout(hpar, 60000);
+				HttpConnectionParams.setSoTimeout(hpar, 30000);
 				HttpClient httpClient = new DefaultHttpClient(hpar);
 				HttpPost postRequest = new HttpPost(
 						"http://gamis61.org/greenforce/push-vote.php");
